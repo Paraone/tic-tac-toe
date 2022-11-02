@@ -16,13 +16,13 @@ export const Board: FC = () => {
         else setPlayerValue(X);
     }
 
-    const renderRow = (): JSX.Element => {
+    const renderRow = (i: number): JSX.Element => {
         let row: Array<JSX.Element> = [];
         for (let j = 0; j < columns; j++) {
-            row.push(<Box playerValue={playerValue} togglePlayerValue={togglePlayerValue}/>);
+            row.push(<Box key={j} playerValue={playerValue} togglePlayerValue={togglePlayerValue}/>);
         }
         return (
-            <div className="row">
+            <div key={i} className="row">
                 {row}
             </div>
         );
@@ -31,7 +31,7 @@ export const Board: FC = () => {
     const renderGrid = () => {
         let grid: Array<JSX.Element> = [];
         for (let i = 0; i < rows; i++) {
-            grid.push(renderRow());
+            grid.push(renderRow(i));
         }
         return (
             <div className="grid">
@@ -43,11 +43,11 @@ export const Board: FC = () => {
     const handleGridChange = (e: React.FormEvent<HTMLSelectElement>): void => {
         e.preventDefault();
         const value: Array<number> = e.currentTarget.value.split('x').map(val => Number(val));
+        console.log({ value })
         setGridSize(value);
     }
 
-    const gridSelect = () : JSX.Element=> {
-       return ( 
+    const gridSelect: JSX.Element = ( 
         <div>
             <select value={gridSize.join('x')} onChange={handleGridChange}>
                 <option value="3x3">3x3</option>
@@ -56,8 +56,7 @@ export const Board: FC = () => {
                 <option value="6x6">6x6</option>
             </select>
         </div>
-        )
-    }
+    )
 
     return (
         <>
