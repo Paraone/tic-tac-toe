@@ -17,7 +17,7 @@ export const Board: FC = () => {
     }
 
     const renderRow = (i: number): JSX.Element => {
-        let row: Array<JSX.Element> = [];
+        const row: Array<JSX.Element> = [];
         for (let j = 0; j < columns; j++) {
             row.push(<Box key={j} playerValue={playerValue} togglePlayerValue={togglePlayerValue}/>);
         }
@@ -29,7 +29,7 @@ export const Board: FC = () => {
     };
 
     const renderGrid = () => {
-        let grid: Array<JSX.Element> = [];
+        const grid: Array<JSX.Element> = [];
         for (let i = 0; i < rows; i++) {
             grid.push(renderRow(i));
         }
@@ -43,7 +43,6 @@ export const Board: FC = () => {
     const handleGridChange = (e: React.FormEvent<HTMLSelectElement>): void => {
         e.preventDefault();
         const value: Array<number> = e.currentTarget.value.split('x').map(val => Number(val));
-        console.log({ value })
         setGridSize(value);
     }
 

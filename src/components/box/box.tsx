@@ -5,7 +5,7 @@ import './box.css';
 interface IBox {
     playerValue: string,
     togglePlayerValue: () => void
-};
+}
 
 export const Box: FC<IBox> = (props: IBox) => {
     const { playerValue, togglePlayerValue } = props;
@@ -13,7 +13,7 @@ export const Box: FC<IBox> = (props: IBox) => {
 
     const click = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        if (!!value) return;
+        if (value) return;
         setValue(playerValue);
         togglePlayerValue();
     };

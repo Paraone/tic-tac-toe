@@ -1,0 +1,27 @@
+add tic tac toe
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Wed Nov 2 12:32:07 2022 -0400
+#
+# interactive rebase in progress; onto 3615a01
+# Last command done (1 command done):
+#    r 3e226b5 add tic tac toe
+# No commands remaining.
+# You are currently editing a commit while rebasing branch 'marcoswade' on '3615a01'.
+#
+# Changes to be committed:
+#	modified:   package.json
+#	modified:   src/App.css
+#	deleted:    src/App.js
+#	new file:   src/App.tsx
+#	new file:   src/components/board/board.css
+#	new file:   src/components/board/board.tsx
+#	new file:   src/components/box/box.css
+#	new file:   src/components/box/box.tsx
+#	renamed:    src/index.js -> src/index.tsx
+#	new file:   src/react-app-env.d.ts
+#	new file:   tsconfig.json
+#	modified:   yarn.lock
+#
