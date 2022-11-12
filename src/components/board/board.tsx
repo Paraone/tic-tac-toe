@@ -76,7 +76,7 @@ export const Board: FC = () => {
 
     const loadGame = (e: React.FormEvent<HTMLButtonElement>): void => {
         e.preventDefault();
-        const savedGameState = JSON.parse(localStorage.getItem('game-state') || '');
+        const savedGameState = JSON.parse(localStorage.getItem('game-state') || '[]');
         if (!savedGameState || !savedGameState.length) return;
         setGameState(savedGameState);
         setGridSize([savedGameState.length, savedGameState[0].length]);
