@@ -6,6 +6,7 @@
     height: 50px;
     border: 1px solid black;
     margin: 3px;
+    transition: background-color 250ms ease-in;
 }
 
 .X {
