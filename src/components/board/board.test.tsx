@@ -40,7 +40,7 @@ describe('Board Component:', () => {
 
         const gridSelect = screen.getByTestId('gridSelect');
         fireEvent.change(gridSelect, {target: {value: '4x4'}})
-        let box = screen.getByTestId('3-3');
+        const box = screen.getByTestId('3-3');
         expect(box).toBeInTheDocument()
     });
 
