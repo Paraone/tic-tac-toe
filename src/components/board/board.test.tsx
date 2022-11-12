@@ -1,0 +1,76 @@
+import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import Board from './board';
+
+describe('Board Component:', () => {
+
+    beforeEach(() => {
+      Object.defineProperty(window, "localStorage", {
+        value: {
+          getItem: jest.fn(() => null),
+          setItem: jest.fn(() => null)
+        },
+        writable: true
+      });
+    });
+
+    test('should show a Board Component', () => {
+        render (<Board />);
+    
+        const resetBtn = screen.getByText(/reset/i);
+        const saveGameBtn = screen.getByText(/Save Game/i);
+        const loadGameBtn = screen.getByText(/Load Game/i);
+    
+        expect(resetBtn).toBeInTheDocument();
+        expect(saveGameBtn).toBeInTheDocument();
+        expect(loadGameBtn).toBeInTheDocument();
+    });
+
+    test('Should render playerValue in Box after onClick', async () => {
+        render (<Board />);
+
+        let box = screen.getByTestId('0-0');
+        await userEvent.click(box);
+        box = screen.getByText('X');
+        expect(box).toBeInTheDocument();
+    });
+
+    test('expect grid to change', async () => {
+        render (<Board />);
+
+        const gridSelect = screen.getByTestId('gridSelect');
+        fireEvent.change(gridSelect, {target: {value: '4x4'}})
+        let box = screen.getByTestId('3-3');
+        expect(box).toBeInTheDocument()
+    });
+
+    test('Should save gameState to localStorage', async () => {
+        render (<Board />);
+
+        const saveBtn = screen.getByTestId('saveBtn');
+        await userEvent.click(saveBtn);
+        expect(window.localStorage.setItem).toHaveBeenCalledTimes(1);
+    });
+
+    test('Should load gameState from localStorage', async () => {
+        render (<Board />);
+
+        const loadBtn = screen.getByTestId('loadBtn');
+        await userEvent.click(loadBtn);
+        expect(window.localStorage.getItem).toHaveBeenCalledTimes(1);
+    });
+
+    test('should reset grid', async () => {
+        render (<Board />);
+
+        let box = screen.getByTestId('0-0');
+        expect(box.innerHTML).toBe('');
+        await userEvent.click(box);
+        box = screen.getByTestId('0-0');
+        expect(box.innerHTML).toBe('X');
+        const resetBtn = screen.getByTestId('resetBtn');
+        await userEvent.click(resetBtn);
+        box = screen.getByTestId('0-0');
+        expect(box.innerHTML).toBe('');
+    });
+})

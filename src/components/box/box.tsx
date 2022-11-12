@@ -25,7 +25,13 @@ export const Box: FC<IBox> = (props: IBox) => {
     };
 
     return (
-        <div onClick={click} className={`box ${value}`}>{value}</div>
+        <div 
+            data-testid={`${i}-${j}`} 
+            onClick={click} 
+            className={`box ${value}`}
+        >
+            {value}
+        </div>
     );
 };
 
