@@ -2,8 +2,8 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => { // eslint-disable-line no-undef
+test('renders reset button', () => { // eslint-disable-line no-undef
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument(); //eslint-disable-line no-undef
+  const buttonElement = screen.getByText(/reset/i);
+  expect(buttonElement).toBeInTheDocument(); //eslint-disable-line no-undef
 });
