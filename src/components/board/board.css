@@ -1,3 +1,22 @@
+button, select {
+    background-color: lightcyan;
+    padding: 7px;
+    font-weight: 700;
+    border: 1px solid black;
+    box-shadow: 1px 1px 3px black;
+    margin: 5px;
+    border-radius: 3px;
+}
+
+button:hover {
+    background-color: white;
+}
+
+button:active {
+    background-color: navy;
+    color: white;
+}
+
 .row {
     display: flex;
 }
