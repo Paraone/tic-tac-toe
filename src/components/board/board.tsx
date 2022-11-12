@@ -82,6 +82,11 @@ export const Board: FC = () => {
         setGridSize([savedGameState.length, savedGameState[0].length]);
     }
 
+    const resetGame = (e: React.FormEvent<HTMLButtonElement>): void => {
+        e.preventDefault();
+        setGameState(initGameState(gridSize));
+    }
+
     const gridSelect: JSX.Element = ( 
         <div>
             <select value={gridSize.join('x')} onChange={handleGridChange}>
@@ -101,12 +106,17 @@ export const Board: FC = () => {
         <button onClick={loadGame}>Load Game</button>
     )
 
+    const resetBtn: JSX.Element = (
+        <button onClick={resetGame}>Reset</button>
+    )
+
     return (
         <>
             {gridSelect}
             {renderGrid()}
             {saveStateBtn}
             {loadStateBtn}
+            {resetBtn}
         </>
     );
 };
