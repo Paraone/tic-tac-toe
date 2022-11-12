@@ -1,20 +1,26 @@
-import React, { FC, useState } from "react";
-import PropTypes from 'prop-types';
+import React, { FC } from "react";
+import { string as pString, func as pFunc, array as pArray} from 'prop-types';
 import './box.css';
 
 interface IBox {
     playerValue: string,
-    togglePlayerValue: () => void
+    value: string,
+    gameState: string[][],
+    position: number[],
+    togglePlayerValue: () => void,
+    setGameState: (gameState: string[][]) => void,
 }
 
 export const Box: FC<IBox> = (props: IBox) => {
-    const { playerValue, togglePlayerValue } = props;
-    const [value, setValue] = useState('');
+    const { playerValue, value, togglePlayerValue, gameState, position, setGameState } = props;
+    const [i, j] = position;
 
     const click = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        if (value) return;
-        setValue(playerValue);
+        if (gameState[i][j]) return;
+        const newGameState = [...gameState]
+        newGameState[i][j] = playerValue;
+        setGameState(newGameState);
         togglePlayerValue();
     };
 
@@ -24,8 +30,12 @@ export const Box: FC<IBox> = (props: IBox) => {
 };
 
 Box.propTypes = {
-    playerValue: PropTypes.string.isRequired,
-    togglePlayerValue: PropTypes.func.isRequired
+    playerValue: pString.isRequired,
+    value: pString.isRequired,
+    togglePlayerValue: pFunc.isRequired,
+    position: pArray.isRequired, 
+    gameState: pArray.isRequired,
+    setGameState: pFunc.isRequired
 }
 
 export default Box;
