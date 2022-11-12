@@ -76,7 +76,7 @@ export const Board: FC = () => {
 
     const loadGame = (e: React.FormEvent<HTMLButtonElement>): void => {
         e.preventDefault();
-        const savedGameState = JSON.parse(localStorage['game-state']);
+        const savedGameState = JSON.parse(localStorage.getItem('game-state') || '');
         if (!savedGameState || !savedGameState.length) return;
         setGameState(savedGameState);
         setGridSize([savedGameState.length, savedGameState[0].length]);
@@ -89,7 +89,7 @@ export const Board: FC = () => {
 
     const gridSelect: JSX.Element = ( 
         <div>
-            <select value={gridSize.join('x')} onChange={handleGridChange}>
+            <select data-testid="gridSelect" value={gridSize.join('x')} onChange={handleGridChange}>
                 <option value="3x3">3x3</option>
                 <option value="4x4">4x4</option>
                 <option value="5x5">5x5</option>
@@ -99,15 +99,15 @@ export const Board: FC = () => {
     );
 
     const saveStateBtn: JSX.Element = (
-        <button onClick={saveGame}>Save Game</button>
+        <button data-testid="saveBtn" onClick={saveGame}>Save Game</button>
     );
 
     const loadStateBtn: JSX.Element = (
-        <button onClick={loadGame}>Load Game</button>
+        <button data-testid="loadBtn" onClick={loadGame}>Load Game</button>
     )
 
     const resetBtn: JSX.Element = (
-        <button onClick={resetGame}>Reset</button>
+        <button data-testid="resetBtn" onClick={resetGame}>Reset</button>
     )
 
     return (
